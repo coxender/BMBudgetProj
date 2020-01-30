@@ -36,7 +36,7 @@ public class Main
         }
     }
 
-    public static String optionsMenu(Scanner in, String[] cat, int[] val,String allMemo){
+    public String optionsMenu(Scanner in, String[] cat, int[] val,String allMemo){
             
         final String OPTIONS=String.format("Possible Actions:\n"+
                 "[1] INFLOW\n"+
@@ -148,66 +148,22 @@ public class Main
     
 
     public static void main(String args[])throws IOException, FileNotFoundException{
-        //intialize Scanners and Files
-        File file= new File("text.txt");//File with budget
-        File memFile= new File("memo.txt");//memo
-        Scanner readFile= new Scanner(file);
-        Scanner readMem= new Scanner(memFile);
-        Scanner in= new Scanner(System.in);
-        
-
-        //variables
-        String[] category= new String[10];
-        String allMemo="";
-        int[] cents= new int[category.length];
-        int inflow;
-        int outflow;
-        final int TO_CENTS=100;
-        final double TO_DOLLARS=1/100.0;
+ 
         Account[] account=new Account[5];
+        String allMemo="";
         
-        while(true){//memo
-            String line=readMem.nextLine();
-            allMemo=allMemo+line;
-            if(!readMem.hasNext()){
-                allMemo=allMemo+" ";
-                break;
-            }
-        }
-        //get categories and scores 
-        System.out.println("\nHere is your budget:");
-        for(int i=0;i<category.length;i++){
-            if(!readFile.hasNext())
-                break;
-                readFile.useDelimiter("#");
-                category[i]=readFile.next();
-
-            
-            readFile.useDelimiter("#");
-            String input=readFile.next();
-            
-            cents[i]=TO_CENTS*Integer.valueOf(input);//makes txt usable
-            
-            System.out.printf("\t[%d] %s\n\t\t$%.2f\n",i+1,category[i],cents[i]*TO_DOLLARS);
-
-            if(!readFile.hasNext()){
-                
-                break;
-            }
-
-        }
         
         
         
         //option menu
-        allMemo=optionsMenu(in, category, cents,allMemo);
+        
         for(int i=0;i<account.length;i++){
             if (account[i]==null){
              break;
             }
-            account[i].writeToFile(category,cents,allMemo);
+            FileWrite.writeToFile(account,"account.txt");
         
-    }
+        }
 
 }
 }
