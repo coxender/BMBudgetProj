@@ -145,28 +145,16 @@ public class Main
         return allMemo;
     }
 
-    public static void writeToFile(String[] cat,int[] value,String allMemo)throws FileNotFoundException{
-        PrintWriter text=new PrintWriter("text.txt");
-        PrintWriter memo=new PrintWriter("memo.txt");
-        for (int i=0; i<cat.length;i++){
-            if(cat[i]==null){
-                break;
-            }
-            text.printf("#%s #%d",cat[i],value[i]/100);
-        }
-        text.close();
-        memo.println(allMemo);
-        memo.close();
-    }
+    
 
     public static void main(String args[])throws IOException, FileNotFoundException{
         //intialize Scanners and Files
-        
         File file= new File("text.txt");//File with budget
         File memFile= new File("memo.txt");//memo
         Scanner readFile= new Scanner(file);
         Scanner readMem= new Scanner(memFile);
         Scanner in= new Scanner(System.in);
+        
 
         //variables
         String[] category= new String[10];
@@ -176,6 +164,7 @@ public class Main
         int outflow;
         final int TO_CENTS=100;
         final double TO_DOLLARS=1/100.0;
+        Account[] account=new Account[5];
         
         while(true){//memo
             String line=readMem.nextLine();
@@ -190,15 +179,15 @@ public class Main
         for(int i=0;i<category.length;i++){
             if(!readFile.hasNext())
                 break;
-	    readFile.useDelimiter("#");
-            category[i]=readFile.next();
+                readFile.useDelimiter("#");
+                category[i]=readFile.next();
 
             
             readFile.useDelimiter("#");
             String input=readFile.next();
             
             cents[i]=TO_CENTS*Integer.valueOf(input);//makes txt usable
-
+            
             System.out.printf("\t[%d] %s\n\t\t$%.2f\n",i+1,category[i],cents[i]*TO_DOLLARS);
 
             if(!readFile.hasNext()){
@@ -212,8 +201,13 @@ public class Main
         
         //option menu
         allMemo=optionsMenu(in, category, cents,allMemo);
-        writeToFile(category,cents,allMemo);
+        for(int i=0;i<account.length;i++){
+            if (account[i]==null){
+             break;
+            }
+            account[i].writeToFile(category,cents,allMemo);
         
     }
 
+}
 }
