@@ -29,12 +29,12 @@ public class FileRead{
             readFile.useDelimiter("#");
             categoryCents[i][0]=readFile.next();//gets name
             
-            //System.out.print(categoryCents[i][0]);
+            System.out.print(categoryCents[i][0]);
             
             readFile.useDelimiter("#");
             categoryCents[i][1]=readFile.next();//gets amount AS A STRING
             
-            //System.out.print(categoryCents[i][1]);
+            System.out.print(categoryCents[i][1]);
             
             System.out.printf("\t[%d] %s\n\t\t$%.2f\n",i+1,categoryCents[i][0],Integer.parseInt(categoryCents[i][1])*TO_DOLLARS);
             

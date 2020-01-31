@@ -12,7 +12,7 @@ public class TestFileReadWrite
         String[][] file=FileRead.readFile("text.txt");
         
         for (int j=0;j<file.length;j++){
-                System.out.printf("\n%10s $%5s",file[j][0],(file[j][1]));
+                //System.out.printf("\n%10s $%5s",file[j][0],(file[j][1]));
         
             }
         FileWrite.writeToFile(file,"text.txt");
