@@ -12,11 +12,11 @@ import java.io.IOException;
 public class FileRead{
     final private static  int TO_CENTS=100;
     final private static double TO_DOLLARS=1/100.0;
-    public static String[][] readFile(String file) {
-        //intialize Scanners and Files
-        try{
-        File text= new File(file);//File with budget
-        Scanner readFile= new Scanner(text);
+    private static File makeFile(String file){//File Exception catching method
+        
+     try{
+        File text= new File(file);
+        
         
         }catch(FileNotFoundException e){
             System.out.println(getMessage());
@@ -25,11 +25,17 @@ public class FileRead{
         }catch(IOException e){
             System.out.println(getMessage());
             System.out.println(stackTrace());
-            System.exit();        
-        }
-        //variables
-        String[][] categoryCents= new String[10][2];
-
+            System.exit();   
+         
+        }  
+        return(text);
+    }
+    public static String[][] readFile(String file) throws IOException, FileNotFoundException{
+         
+         String[][] categoryCents= new String[10][2];
+         File text=makeFile(file);//Exception catcher
+        Scanner readFile= new Scanner(text);
+         //initialize variables
 
         for(int i=0;i<categoryCents.length;i++){
             if(!readFile.hasNext())
@@ -60,7 +66,7 @@ public class FileRead{
     }
 
     public static void readFile(String file, Account[] account)throws IOException, FileNotFoundException{
-        File text=new File(file);
+        File text=makeFile(file);
         Scanner read=new Scanner(text);
         String accountName;
         int balanceCents=0;
@@ -84,7 +90,7 @@ public class FileRead{
     }
 
     public static String readFileMemo(String file)throws IOException, FileNotFoundException{
-        File text=new File(file);
+        File text=makeFile(file);
         Scanner readMem=new Scanner(text);
 
         String allMemo="";
