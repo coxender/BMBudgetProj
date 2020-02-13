@@ -1,4 +1,3 @@
-
 /**
  * Write a description of class FileWrite here.
  *
@@ -9,32 +8,32 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.io.IOException;
+
 public class FileRead{
     final private static  int TO_CENTS=100;
     final private static double TO_DOLLARS=1/100.0;
-    private static File makeFile(String file){//File Exception catching method
+    private static Scanner makeFile(String file){//File Exception catching method
         
      try{
         File text= new File(file);
-        
-        
+        Scanner in=new Scanner(text);
+        return(in);
         }catch(FileNotFoundException e){
-            System.out.println(getMessage());
-            System.out.println(stackTrace());
-            System.exit();
+            System.out.println(e.getMessage());
+            
+            System.exit(1);
         }catch(IOException e){
-            System.out.println(getMessage());
-            System.out.println(stackTrace());
-            System.exit();   
+            System.out.println(e.getMessage());
+            System.exit(1);   
          
         }  
-        return(text);
+        return(null);
     }
-    public static String[][] readFile(String file) throws IOException, FileNotFoundException{
+    public static String[][] readFile(String file) {
          
          String[][] categoryCents= new String[10][2];
-         File text=makeFile(file);//Exception catcher
-        Scanner readFile= new Scanner(text);
+         Scanner readFile=makeFile(file);//Exception catcher
+        
          //initialize variables
 
         for(int i=0;i<categoryCents.length;i++){
@@ -65,9 +64,8 @@ public class FileRead{
         return categoryCents;
     }
 
-    public static void readFile(String file, Account[] account)throws IOException, FileNotFoundException{
-        File text=makeFile(file);
-        Scanner read=new Scanner(text);
+    public static void readFile(String file, Account[] account){
+        Scanner read=makeFile(file);
         String accountName;
         int balanceCents=0;
         read.useDelimiter("#");
@@ -89,9 +87,9 @@ public class FileRead{
         }
     }
 
-    public static String readFileMemo(String file)throws IOException, FileNotFoundException{
-        File text=makeFile(file);
-        Scanner readMem=new Scanner(text);
+    public static String readFileMemo(String file){
+        Scanner readMem=makeFile(file);
+        
 
         String allMemo="";
 
@@ -107,3 +105,4 @@ public class FileRead{
         return allMemo;
     }
 }
+
