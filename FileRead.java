@@ -12,13 +12,21 @@ import java.io.IOException;
 public class FileRead{
     final private static  int TO_CENTS=100;
     final private static double TO_DOLLARS=1/100.0;
-    public static String[][] readFile(String file) throws IOException, FileNotFoundException{
+    public static String[][] readFile(String file) {
         //intialize Scanners and Files
-
+        try{
         File text= new File(file);//File with budget
         Scanner readFile= new Scanner(text);
         
-
+        }catch(FileNotFoundException e){
+            System.out.println(getMessage());
+            System.out.println(stackTrace());
+            System.exit();
+        }catch(IOException e){
+            System.out.println(getMessage());
+            System.out.println(stackTrace());
+            System.exit();        
+        }
         //variables
         String[][] categoryCents= new String[10][2];
 
