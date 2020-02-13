@@ -1,4 +1,3 @@
-
 /**
  * Write a description of class FileWrite here.
  *
@@ -7,6 +6,7 @@
  */
 import java.io.PrintWriter;
 import java.io.FileNotFoundException;
+import java.io.File;
 public class FileWrite
 {
     /**
@@ -16,8 +16,22 @@ public class FileWrite
      * @return void
      * 
      */
-    public static void writeToFile(String[][] cat,String file)throws FileNotFoundException{
+    private static PrintWriter makeWriter(String file){
+        try{
         PrintWriter text=new PrintWriter(file);
+        return(text);
+    }catch(FileNotFoundException e){
+        System.out.print(e.getMessage());
+        System.out.print("Creating Backup File...");
+        //create new file
+        
+        //PrintWriter backup=new PrintWriter(nwfile);
+        
+    }
+    return(null);
+    }
+    public static void writeToFile(String[][] cat,String file){
+        PrintWriter text=makeWriter(file);
         for (int i=0; i<cat.length;i++){
             if(cat[i][0]==null){
                 break;
