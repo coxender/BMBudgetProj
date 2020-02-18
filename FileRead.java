@@ -49,7 +49,7 @@ public class FileRead{
             
             System.out.print(categoryCents[i][1]);
             
-            System.out.printf("\t[%d] %s\n\t\t$%.2f\n",i+1,categoryCents[i][0],Integer.parseInt(categoryCents[i][1])*TO_DOLLARS);
+            // TEST System.out.printf("\t[%d] %s\n\t\t$%.2f\n",i+1,categoryCents[i][0],Integer.parseInt(categoryCents[i][1])*TO_DOLLARS);
             
              
             
@@ -64,7 +64,7 @@ public class FileRead{
         return categoryCents;
     }
 
-    public static void readFile(String file, Account[] account){
+    public static Account[] readFile(String file, Account[] account){
         Scanner read=makeFile(file);
         String accountName;
         int balanceCents=0;
@@ -85,6 +85,7 @@ public class FileRead{
                 //resize array
             }       
         }
+        return account;
     }
 
     public static String readFileMemo(String file){
@@ -95,7 +96,7 @@ public class FileRead{
 
         while(true){//memo
             String line=readMem.nextLine();
-            allMemo=allMemo+line;
+            allMemo=allMemo+line+"\n";
             if(!readMem.hasNext()){
                 allMemo=allMemo+" ";
                 break;

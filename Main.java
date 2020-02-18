@@ -19,13 +19,19 @@ public class Main
      * Displays the arrays containing each category and its budgeted amount. 
      * @param the category array, and the amount array.
      */
-    public static void display(String[] cat, int[] cents){
-        for(int i=0;i<cat.length;i++){
-            if(cat[i]==null){
+    public static void display(String[] cat, int[] cents, Account[] account){
+            for(int i=0;i<cat.length;i++){
+                if(cat[i]==null){
+                System.out.print("EOF");   
                 break;
             }
             System.out.printf("\t [%d]%s\n\t\t$%.2f.\n",i+1,cat[i],cents[i]/100.0);
             
+        }
+        for (int j=0;j<account.length;j++){
+            if(account[j]==null){
+                System.out.print("EOF acct");
+                break;}
         }
     }
 
@@ -36,7 +42,7 @@ public class Main
         }
     }
 
-    public String optionsMenu(Scanner in, String[] cat, int[] val,String allMemo){
+    public String optionsMenu(Account[] account, Scanner in, String[] cat, int[] val,String allMemo){
             
         final String OPTIONS=String.format("Possible Actions:\n"+
                 "[1] INFLOW\n"+
@@ -138,10 +144,10 @@ public class Main
             System.out.println("Please pick a number 1 through 7");
 
         }
-        display(cat, val);
+        display(cat, val, account);
         
         
-        optionsMenu(in, cat, val,allMemo);
+        optionsMenu(account, in, cat, val,allMemo);
         return allMemo;
     }
 
@@ -151,6 +157,12 @@ public class Main
  
         Account[] account=new Account[5];
         String allMemo="";
+        allMemo=FileRead.readFileMemo("memo.txt");
+        //TEST System.out.print(allMemo);
+        FileRead.readFile("account.txt",account);
+        //TEST System.out.print(account[0] +" "+ account[1]);
+        String[][] categoryAM=FileRead.readFile("text.txt");
+        //TEST System.out.print(categoryAM[0][0]+categoryAM[0][1]);
         
         
         
@@ -163,7 +175,7 @@ public class Main
             }
             FileWrite.writeToFile(account,"account.txt");
         
-        }
+        }//This may create n writes of an account
 
-}
+    }
 }
