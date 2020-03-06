@@ -1,1 +1,1 @@
-#ToBudget      #100#Car      #5000#
+#INFLOW #0#

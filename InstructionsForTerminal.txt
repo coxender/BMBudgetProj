@@ -1,5 +1,6 @@
 "Possible Actions:\n"+
-"[1] INFLOW/OUTFLOW\n"+
+"[1] INFLOW\n"+
+"[2]OUTFLOW\n"+
 "[2] TRANSFER BETWEEN CATEGORY\n"+
 "[3] SET UP AUTOMATIC INFLOW DIST*\n"+
 "[4] ADD  A NEW CATEGORY\n"+

@@ -15,9 +15,10 @@ public class FileRead{
     private static Scanner makeFile(String file){//File Exception catching method
         
      try{
-        File text= new File(file);
-        Scanner in=new Scanner(text);
-        return(in);
+         File text= new File(file);
+         text.setReadable(true);
+         Scanner in=new Scanner(text);
+         return(in);
         }catch(FileNotFoundException e){
             System.out.println(e.getMessage());
             
@@ -29,6 +30,7 @@ public class FileRead{
         }  
         return(null);
     }
+   
     public static String[][] readFile(String file) {
          
          String[][] categoryCents= new String[10][2];
@@ -36,15 +38,19 @@ public class FileRead{
         
          //initialize variables
 
-        for(int i=0;i<categoryCents.length;i++){
-            if(!readFile.hasNext())
-                break;
+         for(int i=0;i<categoryCents.length;i++){
+            
             readFile.useDelimiter("#");
+            if(!readFile.hasNext()){
+                break;}
             categoryCents[i][0]=readFile.next();//gets name
             
             System.out.print(categoryCents[i][0]);
             
             readFile.useDelimiter("#");
+            if(!readFile.hasNext()){
+                categoryCents[i][1]="0";//initialize any hanging data
+                break;}
             categoryCents[i][1]=readFile.next();//gets amount AS A STRING
             
             System.out.print(categoryCents[i][1]);
@@ -53,8 +59,7 @@ public class FileRead{
             
              
             
-            if(!readFile.hasNext())
-                break;
+            
             if (i==categoryCents.length&&readFile.hasNext()){
                 //resize array
             }
@@ -70,7 +75,8 @@ public class FileRead{
         int balanceCents=0;
         read.useDelimiter("#");
         for(int i=0;i<account.length;i++){
-            
+            if(!read.hasNext())
+                break;
             accountName=read.next();
 
             read.useDelimiter("#");
@@ -79,8 +85,7 @@ public class FileRead{
             account[i]=new Account(balanceCents,accountName);
             read.useDelimiter("#");
             
-            if(!read.hasNext())
-                break;
+            
             if (i==account.length&&read.hasNext()){
                 //resize array
             }       
