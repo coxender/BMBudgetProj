@@ -11,7 +11,7 @@ public class Account{
 
     public Account(int balance, String name){//constructor
         this.accountName=name;
-        this.balanceCents=balance*100;
+        this.balanceCents=balance;
 
     }
 

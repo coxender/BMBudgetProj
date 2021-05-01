@@ -23,11 +23,16 @@ public class Main
     public static void display(String[][] cat, Account[] account){
         for(int i=0;i<cat.length;i++){
             if(cat[i][1]==null){
+                while(i<account.length){
+                System.out.println("\t\t" + account[i]);
+                i=i+1;
+
+                }
                 System.out.print("EOF");   
                 break;
             }
             System.out.printf("\t [%d]%s\n\t\t$%.2f.",i+1,cat[i][0],Integer.parseInt(cat[i][1])/100.0);
-            System.out.println("\t" + account[i]);
+            System.out.println("\t\t" + account[i]);
         }
     }
 
@@ -140,20 +145,16 @@ public class Main
             case ("3")://category transfers
 
             System.out.print("Enter category to take from:");
-            catnum=check(in, cat.length);
-            if(catnum==-1)
-            break;
+            input=in.nextLine();
+            catnum=Integer.parseInt(input)-1;
             
             System.out.print("Enter category to add to:");
-            catnum1=check(in, cat.length);
-            if(catnum1==-1)
-            break;
+            input=in.nextLine();
+            catnum1=Integer.parseInt(input)-1;
             
             System.out.print("Amount:");
-            if(!in.hasNextDouble()){
-                in.nextLine();}
-            amount=100*(int)in.nextDouble();
-            in.nextLine();
+            temp=Double.parseDouble(in.nextLine());
+            amount=(int)(temp*CENTS);
             
             math=Integer.parseInt(cat[catnum][1])-amount;
             cat[catnum][1]=""+math;//subtracts first cat
@@ -191,7 +192,7 @@ public class Main
             String accountName=in.nextLine();
             System.out.print("Amount: ");
             String hold=in.nextLine();
-            amount=(int)(Double.parseDouble(hold)*100);
+            amount=(int)(Double.parseDouble(hold)*CENTS);
             
             		
             account[i]=new Account(amount,accountName);
