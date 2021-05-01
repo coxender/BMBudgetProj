@@ -89,7 +89,8 @@ public class Main
             System.out.println("Please input Account# and Amount");
             
             System.out.print("Account:");
-            accountHold=Integer.parseInt(in.nextLine());//checks if a valid cod
+            input=in.nextLine();
+            accountHold=Integer.parseInt(input);//checks if a valid cod
 
             System.out.print("\nAmount:");
             Double temp=Double.parseDouble(in.nextLine());
@@ -109,31 +110,29 @@ public class Main
             
 
             System.out.print("Account:");
-            accountHold=check(in,account.length);
-            if(accountHold==-1)
-            break;
-            
-            System.out.print("Amount:");
-            if(!in.hasNextDouble()){
-                in.nextLine();}
-            int outflow=100*(int)in.nextDouble();
-            in.nextLine();
+            input=in.nextLine();
+            accountHold=Integer.parseInt(input);//checks if a valid cod
+
+            System.out.print("\nAmount:");
+            temp=Double.parseDouble(in.nextLine());
+            amount=(int)(temp*CENTS);
 
             System.out.print("Memo: ");//memo add to memo line
             String inputMemo=in.nextLine();
-            allMemo=allMemo+"#"+account+"-"+ (outflow) + " ?" +inputMemo;
+            allMemo=allMemo+"#"+account+"-"+ (amount) + " ?" +inputMemo;
             //Standard format:OLD+#A+(+/-)+?memo\n
             
 
             System.out.print("Enter the category taken from: ");
-            catnum=check(in,cat.length);
-            if(catnum==-1)
-            break;
+            input=in.nextLine();
+            catnum=Integer.parseInt(input)-1;
+            //System.out.print(catnum);
+
             
-            account[accountHold-1].addBalance(-1*outflow);//account #
+            account[accountHold-1].addBalance(-1*amount);//account #
             
-            int math=Integer.parseInt(cat[catnum][1])-outflow;
-            cat[catnum][1]=""+math;//cat#
+            int math=Integer.parseInt(cat[catnum][1])-amount;
+            cat[catnum][1]=String.valueOf(math);//cat#
             
             
             break;
