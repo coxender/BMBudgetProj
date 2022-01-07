@@ -1,8 +1,9 @@
-------------------------------------------------------------------------
-This is the project README file. Here, you should describe your project.
-Tell the reader (someone who does not know anything about this project)
-all he/she needs to know. The comments should usually include at least:
-------------------------------------------------------------------------
+
+## Update 1/6/2022
+
+This project is now archived.  This is a project I started working on after my intro to java class years ago.  This idea is being revamped in the new BudgetPro Currently being worked on.  This project will be archived soon.
+
+---
 
 PROJECT TITLE: BM Budget 
 PURPOSE OF PROJECT: To keep a basic budget after my free trial on YNAB expires.
