@@ -1,7 +1,6 @@
+##Update 1/6/2022
 
-## Update 1/6/2022
-
-This project is now archived.  This is a project I started working on after my intro to java class years ago.  This idea is being revamped in the new BudgetPro Currently being worked on.  This project will be archived soon.
+This project is now archived.  This is a project I started working on during my Intro Java Class.  My ideas has come a long way, and is being revamped in the new BudgetPro currently being worked on.  This project will be archived soon.
 
 ---
 
